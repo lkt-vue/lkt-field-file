@@ -1,11 +1,8 @@
 declare const _default: {
     new (...args: any[]): import("vue").CreateComponentPublicInstance<Readonly<import("vue").ExtractPropTypes<{
         modelValue: {
-            type: ObjectConstructor;
-            default: () => {
-                id: string;
-                text: string;
-            };
+            type: StringConstructor;
+            default: string;
         };
         name: {
             type: StringConstructor;
@@ -90,11 +87,8 @@ declare const _default: {
         "onUpload-error"?: (...args: any[]) => any;
     }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("update:modelValue" | "uploading" | "upload-success" | "upload-error")[], import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & Readonly<import("vue").ExtractPropTypes<{
         modelValue: {
-            type: ObjectConstructor;
-            default: () => {
-                id: string;
-                text: string;
-            };
+            type: StringConstructor;
+            default: string;
         };
         name: {
             type: StringConstructor;
@@ -188,7 +182,7 @@ declare const _default: {
         tabindex: number;
         resource: string;
         accept: string;
-        modelValue: Record<string, any>;
+        modelValue: string;
         resourceData: Record<string, any>;
         palette: string;
         readMode: boolean;
@@ -207,11 +201,8 @@ declare const _default: {
         Defaults: {};
     }, Readonly<import("vue").ExtractPropTypes<{
         modelValue: {
-            type: ObjectConstructor;
-            default: () => {
-                id: string;
-                text: string;
-            };
+            type: StringConstructor;
+            default: string;
         };
         name: {
             type: StringConstructor;
@@ -305,7 +296,7 @@ declare const _default: {
         tabindex: number;
         resource: string;
         accept: string;
-        modelValue: Record<string, any>;
+        modelValue: string;
         resourceData: Record<string, any>;
         palette: string;
         readMode: boolean;
@@ -321,11 +312,8 @@ declare const _default: {
     __isSuspense?: never;
 } & import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
     modelValue: {
-        type: ObjectConstructor;
-        default: () => {
-            id: string;
-            text: string;
-        };
+        type: StringConstructor;
+        default: string;
     };
     name: {
         type: StringConstructor;
@@ -419,7 +407,7 @@ declare const _default: {
     tabindex: number;
     resource: string;
     accept: string;
-    modelValue: Record<string, any>;
+    modelValue: string;
     resourceData: Record<string, any>;
     palette: string;
     readMode: boolean;
