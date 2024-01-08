@@ -111,6 +111,10 @@ const onClickUploadButton = () => {
     if (!canChangeFile.value) return;
     inputElement.value.click();
 }
+
+defineExpose({
+    click: () => inputElement.value.click(),
+})
 </script>
 
 

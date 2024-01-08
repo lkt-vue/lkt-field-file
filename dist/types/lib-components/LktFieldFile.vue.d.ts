@@ -85,7 +85,9 @@ declare const _default: {
         onUploading?: (...args: any[]) => any;
         "onUpload-success"?: (...args: any[]) => any;
         "onUpload-error"?: (...args: any[]) => any;
-    }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("update:modelValue" | "uploading" | "upload-success" | "upload-error")[], import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & Readonly<import("vue").ExtractPropTypes<{
+    }, {
+        click: () => any;
+    }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("update:modelValue" | "uploading" | "upload-success" | "upload-error")[], import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & Readonly<import("vue").ExtractPropTypes<{
         modelValue: {
             type: StringConstructor;
             default: string;
@@ -285,7 +287,9 @@ declare const _default: {
         onUploading?: (...args: any[]) => any;
         "onUpload-success"?: (...args: any[]) => any;
         "onUpload-error"?: (...args: any[]) => any;
-    }, {}, {}, {}, {}, {
+    }, {
+        click: () => any;
+    }, {}, {}, {}, {
         name: string;
         label: string;
         reset: boolean;
@@ -396,7 +400,9 @@ declare const _default: {
     onUploading?: (...args: any[]) => any;
     "onUpload-success"?: (...args: any[]) => any;
     "onUpload-error"?: (...args: any[]) => any;
-}, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("update:modelValue" | "uploading" | "upload-success" | "upload-error")[], "update:modelValue" | "uploading" | "upload-success" | "upload-error", {
+}, {
+    click: () => any;
+}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("update:modelValue" | "uploading" | "upload-success" | "upload-error")[], "update:modelValue" | "uploading" | "upload-success" | "upload-error", {
     name: string;
     label: string;
     reset: boolean;
