@@ -32,10 +32,10 @@ const J = ["data-disabled"], U = ["name", "id", "disabled", "readonly", "placeho
     switchEditionMessage: { type: String, default: "" }
   },
   emits: ["update:modelValue", "uploading", "upload-success", "upload-error"],
-  setup(l, { expose: V, emit: F }) {
-    const n = F, e = l, h = C(16), p = i(null);
-    i(e.modelValue);
-    const a = i(e.modelValue), r = i(!e.readMode), k = i(!1), b = i(!1), u = i(!1), m = () => {
+  setup(e, { expose: V, emit: F }) {
+    const n = F, l = e, h = C(16), p = i(null);
+    i(l.modelValue);
+    const a = i(l.modelValue), r = i(!l.readMode), k = i(!1), b = i(!1), u = i(!1), m = () => {
       k.value = a.value.includes("image/"), b.value = a.value.includes("text/");
     };
     m();
@@ -44,10 +44,10 @@ const J = ["data-disabled"], U = ["name", "id", "disabled", "readonly", "placeho
       if (s.files && s.files[0]) {
         const c = new FileReader();
         c.onload = (v) => {
-          if (a.value = v.target.result, m(), e.resource) {
+          if (a.value = v.target.result, m(), l.resource) {
             u.value = !0, n("uploading");
-            let w = JSON.parse(JSON.stringify(e.resourceData));
-            w.files = s.files[0], I(e.resource, w).then((f) => {
+            let w = JSON.parse(JSON.stringify(l.resourceData));
+            w.files = s.files[0], I(l.resource, w).then((f) => {
               a.value = f.data, u.value = !1, n("upload-success", f);
             }).catch((f) => {
               u.value = !1, n("upload-error", f);
@@ -57,9 +57,9 @@ const J = ["data-disabled"], U = ["name", "id", "disabled", "readonly", "placeho
       }
     }, N = M(() => {
       const t = ["lkt-field", "lkt-field-file"];
-      return e.palette && t.push(`lkt-field--${e.palette}`), e.disabled && t.push("is-disabled"), t.push(e.modelValue ? "is-filled" : "is-empty"), t.join(" ");
-    }), S = M(() => !e.disabled && !e.readonly && r.value);
-    y(() => e.readMode, (t) => r.value = !t), y(() => e.modelValue, (t) => {
+      return l.palette && t.push(`lkt-field--${l.palette}`), l.disabled && t.push("is-disabled"), t.push(l.modelValue ? "is-filled" : "is-empty"), t.join(" ");
+    }), S = M(() => !l.disabled && !l.readonly && r.value);
+    y(() => l.readMode, (t) => r.value = !t), y(() => l.modelValue, (t) => {
       a.value = t, m();
     }), y(a, () => n("update:modelValue", a.value));
     const D = () => {
@@ -71,26 +71,26 @@ const J = ["data-disabled"], U = ["name", "id", "disabled", "readonly", "placeho
       const c = R("lkt-loader");
       return d(), o("div", {
         class: _(N.value),
-        "data-disabled": l.disabled
+        "data-disabled": e.disabled
       }, [
         O(t.$slots, "prefix"),
         B("input", {
           type: "file",
           ref: (v) => p.value = v,
-          name: l.name,
+          name: e.name,
           id: x(h),
-          disabled: l.disabled || !r.value,
-          readonly: l.readonly || !r.value,
-          placeholder: l.placeholder,
-          accept: l.accept,
+          disabled: e.disabled || !r.value,
+          readonly: e.readonly || !r.value,
+          placeholder: e.placeholder,
+          accept: e.accept,
           onChange: L
         }, null, 40, U),
-        l.label ? T((d(), o("label", {
+        e.label ? T((d(), o("label", {
           key: 0,
           for: x(h),
-          innerHTML: l.label
+          innerHTML: e.label
         }, null, 8, $)), [
-          [j, !l.disabled && !l.readonly]
+          [j, !e.disabled && !e.readonly]
         ]) : g("", !0),
         B("div", z, [
           u.value ? (d(), A(c, { key: 0 })) : k.value ? (d(), o("img", {
@@ -109,8 +109,8 @@ const J = ["data-disabled"], U = ["name", "id", "disabled", "readonly", "placeho
   }
 });
 const Z = {
-  install: (l) => {
-    l.component("lkt-field-file", K);
+  install: (e) => {
+    e.component("lkt-field-file") === void 0 && e.component("lkt-field-file", K);
   }
 };
 export {

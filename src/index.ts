@@ -5,7 +5,8 @@ import "./../lkt-field-file.css"
 
 const LktFieldFile = {
   install: (app: App) => {
-    app.component('lkt-field-file', fileField);
+    // Register plugin components
+    if (app.component('lkt-field-file') === undefined) app.component('lkt-field-file', fileField);
   },
 };
 
