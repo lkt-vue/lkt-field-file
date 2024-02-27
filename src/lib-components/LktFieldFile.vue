@@ -109,10 +109,12 @@ watch(value, () => emit('update:modelValue', value.value));
 
 const onClickUploadButton = () => {
     if (!canChangeFile.value) return;
+    //@ts-ignore
     inputElement.value.click();
 }
 
 defineExpose({
+    //@ts-ignore
     click: () => inputElement.value.click(),
 })
 </script>

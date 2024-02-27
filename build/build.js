@@ -63,9 +63,10 @@ const J = ["data-disabled"], U = ["name", "id", "disabled", "readonly", "placeho
       a.value = t, m();
     }), y(a, () => n("update:modelValue", a.value));
     const D = () => {
-      !S.value || p.value.click();
+      S.value && p.value.click();
     };
     return V({
+      //@ts-ignore
       click: () => p.value.click()
     }), (t, s) => {
       const c = R("lkt-loader");
@@ -107,8 +108,7 @@ const J = ["data-disabled"], U = ["name", "id", "disabled", "readonly", "placeho
       ], 10, J);
     };
   }
-});
-const Z = {
+}), Z = {
   install: (e) => {
     e.component("lkt-field-file") === void 0 && e.component("lkt-field-file", K);
   }
