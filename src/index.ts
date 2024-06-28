@@ -1,7 +1,8 @@
-import { App } from 'vue';
+import {App, Component} from 'vue';
 
 import { default as fileField } from './lib-components/LktFieldFile.vue';
 import "./../lkt-field-file.css"
+import {Settings} from "./settings/Settings";
 
 const LktFieldFile = {
   install: (app: App) => {
@@ -11,3 +12,10 @@ const LktFieldFile = {
 };
 
 export default LktFieldFile;
+
+
+
+export const setFileUploadIconSlot = (component: string|Component) => {
+  Settings.uploadFileSlot = component;
+  return true;
+}

@@ -1,17 +1,24 @@
-import { defineComponent as E, ref as i, computed as M, watch as y, resolveComponent as R, openBlock as d, createElementBlock as o, normalizeClass as _, renderSlot as O, createElementVNode as B, unref as x, withDirectives as T, vShow as j, createCommentVNode as g, createBlock as A, withModifiers as H } from "vue";
-import { generateRandomString as C } from "lkt-string-tools";
-import { httpCall as I } from "lkt-http-client";
-const J = ["data-disabled"], U = ["name", "id", "disabled", "readonly", "placeholder", "accept"], $ = ["for", "innerHTML"], z = { class: "lkt-field-file-preview" }, P = ["src"], W = {
+import { defineComponent as T, ref as o, computed as v, watch as S, resolveComponent as j, openBlock as a, createElementBlock as d, normalizeClass as A, renderSlot as H, createElementVNode as D, unref as E, withDirectives as J, vShow as $, createCommentVNode as m, createBlock as b, resolveDynamicComponent as L, withModifiers as z } from "vue";
+import { generateRandomString as N } from "lkt-string-tools";
+import { httpCall as P } from "lkt-http-client";
+const y = class y {
+};
+y.uploadFileSlot = "", y.debugEnabled = !1;
+let n = y;
+const W = ["data-disabled"], q = ["name", "id", "disabled", "readonly", "placeholder", "accept"], G = ["for", "innerHTML"], K = { class: "lkt-field-file-preview" }, Q = ["src"], X = {
   key: 2,
   class: "lkt-field-file-preview-txt"
-}, q = {
+}, Y = {
   key: 3,
   class: "lkt-field-file-preview-txt"
-}, G = { name: "LktFieldFile", inheritAttrs: !1 }, K = /* @__PURE__ */ E({
-  ...G,
+}, Z = {
+  key: 4,
+  class: "lkt-field-file-preview-empty"
+}, ee = { name: "LktFieldFile", inheritAttrs: !1 }, le = /* @__PURE__ */ T({
+  ...ee,
   props: {
     modelValue: { type: String, default: "" },
-    name: { type: String, default: C(16) },
+    name: { type: String, default: N(16) },
     label: { type: String, default: "" },
     resource: { type: String, default: "" },
     resourceData: { type: Object, default: () => ({}) },
@@ -32,87 +39,92 @@ const J = ["data-disabled"], U = ["name", "id", "disabled", "readonly", "placeho
     switchEditionMessage: { type: String, default: "" }
   },
   emits: ["update:modelValue", "uploading", "upload-success", "upload-error"],
-  setup(e, { expose: V, emit: F }) {
-    const n = F, l = e, h = C(16), p = i(null);
-    i(l.modelValue);
-    const a = i(l.modelValue), r = i(!l.readMode), k = i(!1), b = i(!1), u = i(!1), m = () => {
-      k.value = a.value.includes("image/"), b.value = a.value.includes("text/");
+  setup(e, { expose: R, emit: U }) {
+    const r = U, l = e, w = N(16), h = o(null);
+    o(l.modelValue);
+    const i = o(l.modelValue), u = o(!l.readMode), F = o(!1), M = o(!1), c = o(!1), k = () => {
+      F.value = i.value.includes("image/"), M.value = i.value.includes("text/");
     };
-    m();
-    const L = (t) => {
+    k();
+    const _ = (t) => {
       let s = t.target;
       if (s.files && s.files[0]) {
-        const c = new FileReader();
-        c.onload = (v) => {
-          if (a.value = v.target.result, m(), l.resource) {
-            u.value = !0, n("uploading");
-            let w = JSON.parse(JSON.stringify(l.resourceData));
-            w.files = s.files[0], I(l.resource, w).then((f) => {
-              a.value = f.data, u.value = !1, n("upload-success", f);
-            }).catch((f) => {
-              u.value = !1, n("upload-error", f);
+        const f = new FileReader();
+        f.onload = (g) => {
+          if (i.value = g.target.result, k(), l.resource) {
+            c.value = !0, r("uploading");
+            let V = JSON.parse(JSON.stringify(l.resourceData));
+            V.files = s.files[0], P(l.resource, V).then((p) => {
+              i.value = p.data, c.value = !1, r("upload-success", p);
+            }).catch((p) => {
+              c.value = !1, r("upload-error", p);
             });
           }
-        }, c.readAsDataURL(s.files[0]);
+        }, f.readAsDataURL(s.files[0]);
       }
-    }, N = M(() => {
+    }, I = v(() => {
       const t = ["lkt-field", "lkt-field-file"];
       return l.palette && t.push(`lkt-field--${l.palette}`), l.disabled && t.push("is-disabled"), t.push(l.modelValue ? "is-filled" : "is-empty"), t.join(" ");
-    }), S = M(() => !l.disabled && !l.readonly && r.value);
-    y(() => l.readMode, (t) => r.value = !t), y(() => l.modelValue, (t) => {
-      a.value = t, m();
-    }), y(a, () => n("update:modelValue", a.value));
-    const D = () => {
-      S.value && p.value.click();
-    };
-    return V({
+    }), B = v(() => !l.disabled && !l.readonly && u.value);
+    S(() => l.readMode, (t) => u.value = !t), S(() => l.modelValue, (t) => {
+      i.value = t, k();
+    }), S(i, () => r("update:modelValue", i.value));
+    const O = () => {
+      B.value && h.value.click();
+    }, C = v(() => !!n.uploadFileSlot), x = v(() => n.uploadFileSlot);
+    return R({
       //@ts-ignore
-      click: () => p.value.click()
+      click: () => h.value.click()
     }), (t, s) => {
-      const c = R("lkt-loader");
-      return d(), o("div", {
-        class: _(N.value),
+      const f = j("lkt-loader");
+      return a(), d("div", {
+        class: A(I.value),
         "data-disabled": e.disabled
       }, [
-        O(t.$slots, "prefix"),
-        B("input", {
+        H(t.$slots, "prefix"),
+        D("input", {
           type: "file",
-          ref: (v) => p.value = v,
+          ref: (g) => h.value = g,
           name: e.name,
-          id: x(h),
-          disabled: e.disabled || !r.value,
-          readonly: e.readonly || !r.value,
+          id: E(w),
+          disabled: e.disabled || !u.value,
+          readonly: e.readonly || !u.value,
           placeholder: e.placeholder,
           accept: e.accept,
-          onChange: L
-        }, null, 40, U),
-        e.label ? T((d(), o("label", {
+          onChange: _
+        }, null, 40, q),
+        e.label ? J((a(), d("label", {
           key: 0,
-          for: x(h),
+          for: E(w),
           innerHTML: e.label
-        }, null, 8, $)), [
-          [j, !e.disabled && !e.readonly]
-        ]) : g("", !0),
-        B("div", z, [
-          u.value ? (d(), A(c, { key: 0 })) : k.value ? (d(), o("img", {
+        }, null, 8, G)), [
+          [$, !e.disabled && !e.readonly]
+        ]) : m("", !0),
+        D("div", K, [
+          c.value ? (a(), b(f, { key: 0 })) : F.value ? (a(), d("img", {
             key: 1,
             class: "lkt-field-file-preview-img",
-            src: a.value
-          }, null, 8, P)) : b.value ? (d(), o("span", W, "txt")) : a.value ? (d(), o("span", q, "file")) : g("", !0),
-          S.value ? (d(), o("div", {
-            key: 4,
+            src: i.value
+          }, null, 8, Q)) : M.value ? (a(), d("span", X, "txt")) : i.value ? (a(), d("span", Y, "file")) : (a(), d("span", Z, [
+            C.value ? (a(), b(L(x.value), { key: 0 })) : m("", !0)
+          ])),
+          B.value ? (a(), d("div", {
+            key: 5,
             class: "lkt-field-upload-button",
-            onClick: H(D, ["prevent", "stop"])
-          })) : g("", !0)
+            onClick: z(O, ["prevent", "stop"])
+          }, [
+            C.value ? (a(), b(L(x.value), { key: 0 })) : m("", !0)
+          ])) : m("", !0)
         ])
-      ], 10, J);
+      ], 10, W);
     };
   }
-}), Z = {
+}), oe = {
   install: (e) => {
-    e.component("lkt-field-file") === void 0 && e.component("lkt-field-file", K);
+    e.component("lkt-field-file") === void 0 && e.component("lkt-field-file", le);
   }
-};
+}, de = (e) => (n.uploadFileSlot = e, !0);
 export {
-  Z as default
+  oe as default,
+  de as setFileUploadIconSlot
 };

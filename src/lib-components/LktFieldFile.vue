@@ -6,6 +6,7 @@ export default {name: "LktFieldFile", inheritAttrs: false}
 import {generateRandomString} from "lkt-string-tools";
 import {computed, ref, watch} from "vue";
 import {httpCall, HTTPResponse} from "lkt-http-client";
+import {Settings} from "../settings/Settings";
 
 const emit = defineEmits(['update:modelValue', 'uploading', 'upload-success', 'upload-error']);
 
@@ -111,7 +112,13 @@ const onClickUploadButton = () => {
     if (!canChangeFile.value) return;
     //@ts-ignore
     inputElement.value.click();
-}
+},
+    hasUploadFileSlot = computed(() => {
+        return !!Settings.uploadFileSlot;
+    }),
+    uploadFileSlot = computed(() => {
+        return Settings.uploadFileSlot;
+    });
 
 defineExpose({
     //@ts-ignore
@@ -139,9 +146,12 @@ defineExpose({
             <img class="lkt-field-file-preview-img" v-else-if="previewImage" :src="value"/>
             <span class="lkt-field-file-preview-txt" v-else-if="previewText">txt</span>
             <span class="lkt-field-file-preview-txt" v-else-if="value">file</span>
+            <span class="lkt-field-file-preview-empty" v-else>
+                <component v-if="hasUploadFileSlot" :is="uploadFileSlot"/>
+            </span>
 
             <div class="lkt-field-upload-button" v-if="canChangeFile" v-on:click.prevent.stop="onClickUploadButton">
-
+                <component v-if="hasUploadFileSlot" :is="uploadFileSlot"/>
             </div>
         </div>
     </div>
