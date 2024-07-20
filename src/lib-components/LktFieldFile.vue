@@ -1,11 +1,7 @@
-<script lang="ts">
-export default {name: "LktFieldFile", inheritAttrs: false}
-</script>
-
 <script lang="ts" setup>
 import {generateRandomString} from "lkt-string-tools";
-import {computed, ref, watch} from "vue";
-import {httpCall, HTTPResponse} from "lkt-http-client";
+import {computed, onMounted, ref, watch} from "vue";
+import {createHTTPGetResource, httpCall, HTTPResponse} from "lkt-http-client";
 import {Settings} from "../settings/Settings";
 
 const emit = defineEmits(['update:modelValue', 'uploading', 'upload-success', 'upload-error']);
@@ -51,6 +47,11 @@ const originalValue = ref(props.modelValue),
 const checkWhatShouldPreview = () => {
     previewImage.value = value.value.includes('image/');
     previewText.value = value.value.includes('text/');
+}
+
+const checkWhatShouldPreviewWithResponseMime = (mime: string) => {
+    previewImage.value = mime.includes('image/');
+    previewText.value = mime.includes('text/');
 }
 
 checkWhatShouldPreview();
@@ -124,6 +125,18 @@ defineExpose({
     //@ts-ignore
     click: () => inputElement.value.click(),
 })
+
+onMounted(() => {
+    if (originalValue.value.length > 0) {
+        (async () => {
+            let response = await httpCall(createHTTPGetResource({
+                url: originalValue.value,
+                anonymous: true
+            }));
+            checkWhatShouldPreviewWithResponseMime(response.contentType)
+        })()
+    }
+})
 </script>
 
 
@@ -142,7 +155,7 @@ defineExpose({
         >
         <label v-if="label" :for="Identifier" v-html="label" v-show="!disabled && !readonly"></label>
         <div class="lkt-field-file-preview">
-            <lkt-loader v-if="uploading"></lkt-loader>
+            <lkt-loader v-if="uploading"/>
             <img class="lkt-field-file-preview-img" v-else-if="previewImage" :src="value"/>
             <span class="lkt-field-file-preview-txt" v-else-if="previewText">txt</span>
             <span class="lkt-field-file-preview-txt" v-else-if="value">file</span>

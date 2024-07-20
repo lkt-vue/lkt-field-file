@@ -1,5 +1,5 @@
-declare namespace oe {
-    function install(e: any): void;
+declare namespace ne {
+    function install(l: any): void;
 }
-declare function de(e: any): boolean;
-export { oe as default, de as setFileUploadIconSlot };
+declare function ue(l: any): boolean;
+export { ne as default, ue as setFileUploadIconSlot };
